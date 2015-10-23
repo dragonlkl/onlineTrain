@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>金山云 - XGSDK</title>
+  <link rel="shortcut icon" href="/assets/img/home/logo.png" />
+  <style type="text/css">      html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+  body { font-family: helvetica, "黑体" }
+  h1 { font-size: 30px; font-weight: bold; }
+  a { text-decoration: none; }
+  .container { width: 960px; margin: auto; position: relative; }
+  .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+  #logo { float: left; display: block; padding: 18px 0 2px 0; }
+  #header { height: 70px; background: #3f3f3f;background-image: linear-gradient(to bottom,#222,#3f3f3f);box-shadow:0 1px 1px #525661 border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+  #header .links { position: absolute; right: 0; top: 30px; overflow: hidden;}
+  #header .links li { float: left;color: #dcdcdc;}
+  #header .links a  { color: #dcdcdc; transition: all .2s linear; padding: 0 5px; }
+  #header .links a:hover { color: #70b3f7; }
+  #brand .name { color: #64AB30; }
+  #brand .slogan { color: #666; font-size: 16px; position: relative; top: -2px; padding-left: 8px; }
+      .mod-content{width: 1000px; margin: 0 auto;}
+#banner{height:560px; background:url(/assets/img/home/bg_01.jpg)  top center #4994db;;}
+      #banner  .mod-content{height:560px; background:url(/assets/img/home/banner_01.jpg) no-repeat top center;}
+      #banner .brandname{ color:#dbeeff;padding: 5px;font-size: 24px;font-weight: bolder;}
+      #banner .content{position: relative;top:150px;left:10px;padding:5px 10px;}
+      #banner h1{color:#fff;font-weight: bolder;font-size: 48px;padding: 6px;}
+      #banner h4{color:#fff;padding: 5px 0 0 70px;}
+      #banner p{padding: 40px 0 0 60px;}
+      .abtn-download{display: block;width: 200px;height: 70px;border-radius: 5px; background: #0073dd;color: #fff;font-weight: bold;line-height: 70px;font-size: 30px;text-align: center; cursor: pointer;}
+      .abtn-download:hover{background: #30618f; color: #54aafd;}
+      #screen-compare{height: 650px;background: #fff;}
+      #screen-compare .mod-content{height: 650px; background:url(/assets/img/home/banner_02.jpg) no-repeat top center;}
+      #screen-compare .content,#pay-rate .content,#increase-income .content,#network .content{text-align: center;margin: 20px auto;}
+      #screen-compare h2,#pay-rate h2,#increase-income h2,#network h2{font-size: 48px;color: #4994db;font-weight: bolder;padding: 15px;}
+      #screen-compare p,#pay-rate p,#increase-income p,#network p{color: #999a9b;padding: 3px;}
+      #player-exp{height:650px;background: #4971b6;}
+      #player-exp .mod-content{height:650px; background:url(/assets/img/home/banner_03.jpg) no-repeat top center;}
+      #player-exp .content ,#player-draw .content,#crash .content,#company .content{text-align: center;padding: 20px auto; color: #fff;}
+      #player-exp h2,#player-draw h2,#crash h2,#company h2{font-size: 48px;padding: 15px;}
+      #player-exp p,#player-draw p,#crash p{padding: 3px;}
+      #pay-rate{height: 646px; background: #fff;}
+      #pay-rate .mod-content{height: 646px; background:url(/assets/img/home/banner_04.jpg) no-repeat top center;}
+      #player-draw{height:650px; background: #df4b44;}
+      #player-draw .mod-content{height:650px; background:url(/assets/img/home/banner_05.jpg) no-repeat top center;}
+      #increase-income{height: 646px; background: url(/assets/img/home/bg_06.jpg) no-repeat top center;}
+      #increase-income .mod-content{height: 646px; background:url(/assets/img/home/banner_06.jpg) no-repeat top center;}
+      #crash{height: 650px; background: #4994db;}
+      #crash .mod-content{height: 650px; background:url(/assets/img/home/banner_07.jpg) no-repeat top center;}
+      #network{height: 648px;  background: #fff;}
+      #network .mod-content{height: 648px; background:url(/assets/img/home/banner_08.jpg) no-repeat top center;}
+      #company{height: 400px;background: #4994db;}
+      .mod-content .content{padding-top: 20px; }
+      .footer p{line-height: 20px;}
+      .footer{background: #383f4f; color: #a8afb5; height:300px;padding: 20px; text-align: center;font-size: 14px;}
+      .footer span{padding: 20px;}
+      #company ul{overflow: hidden;margin: 10px 70px;}
+      #company ul li{float: left;width: 120px;height: 35px;padding:32px 40px;border: 1px solid #ccc; vertical-align: middle;text-align: center; margin:10px 10px 0 0; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div id="header">
+    <div class="container">
+     <h1 id="brand">
+        <a href="#" id="logo">
+          <img src="/assets/img/home/logobrand.png" />
+          
+        </a>
+      </h1>
+      <ul class="links clearfix">
+        <li><a href="/ui/login">登录</a></li>
+          <li>|</li>
+        <li><a href="http://42.62.70.77:88/mediawiki/index.php/%E9%A6%96%E9%A1%B5" class="docs" target="_blank">开发文档</a></li>
+          <li>|</li> 
+        <li><a href="#contact" class="contact">联系我们</a></li>
+      </ul>
+    </div>
+  </div>
+    
+  <div id="main">
+      <div id="banner">
+          <div class="mod-content">
+              <div class="content">
+                  <h4><b class="brandname">XGSDK</b> 源自游戏世家的手游数据平台</h4>
+                  <h1>自信做最懂游戏的云</h1>
+                  <p><a class="abtn abtn-download">下载 XGSDK</a></p>
+              </div>
+          </div>
+      </div>
+      <div id="screen-compare">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>业界指标同屏对比</h2>
+                  <p>通过与业内的横向指标对比使游戏开发者全面了解产品的优缺点，</p>
+                  <p>帮助开发者了解行业现状和提升游戏品质。</p>
+              </div>
+          </div>
+      </div>
+      <div id="player-exp">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>优化玩家体验</h2>
+                  <p>关卡、任务、场景等过程中的行为分析，了解用户行为是否符合预期，</p>
+                  <p>借此来做到恰到好处的数值平衡设计，也可充分利用数据分析的结果来帮助开发者优化游戏内的体验。</p>
+              </div>
+          </div>
+      </div>
+      <div id="pay-rate">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>付费转化率</h2>
+                  <p>针对付费用户群，通过数据分析模型和图表，跟踪付费用户的留存、流失、回访和充值数据、</p>
+                  <p>更好的反映付费用户在整个生命周期的关键行为和价值。</p>
+              </div>
+          </div>
+      </div>
+      <div id="player-draw">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>精确用户画像</h2>
+                  <p>利用数据管理平台进行用户数据收集、搭建并完善用户画像模型、</p>
+                  <p>分析原有用户属性，找出总是用户、核心用户、目标用户与潜在用户。</p>
+              </div>
+          </div>
+      </div>
+      <div id="increase-income">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>提升收入</h2>
+                  <p>全面提高游戏开发者的日常数据运营工作效率，提供付费用户、付费率、付费金额和ARPU等</p><p>运营指标的参考。可以更加有效的掌握游戏运营状态，实时做出调整，实现收入的稳步增长。</p>
+              </div>
+          </div>
+      </div>
+      <div id="crash">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>崩溃分析</h2>
+                  <p>手游崩溃、闪退、异常等问题导致的玩家流失时刻在发生，开发者却一无所知。</p><p>使用崩溃分析掌握手游崩溃数据、代码级定位问题、全面提升玩家留存。</p>
+              </div>
+          </div>
+      </div>
+      <div id="network">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>网络监控</h2>
+                  <p>了解终端网络状态，指导游戏开发者调整游戏服务架构方案，保证用户能够得到流畅的体验。</p>
+              </div>
+          </div>
+      </div>
+      <div id="company">
+          <div class="mod-content">
+              <div class="content">
+                  <h2>合作伙伴</h2>
+                  <p>
+                      <ul>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                          <li><img src="/assets/img/home/ksyun.png"/></li>
+                      
+                      </ul>
+                  </p>
+              </div>
+          </div>
+      </div>    
+
+
+    
+    
+  </div>
+    <div class="footer">
+      <div class="mod-content">
+          <p>
+              <a>联系我们</a><span>|</span>
+              <a>投诉举报</a><span>|</span>
+              <a>Complaint Guidelines</a><span>|</span>
+              <a>金山网络科技有限公司</a>
+              
+          </p>
+          <p>Copyright © 2014 - 2015 KINGSOFT XGSDK.COM. All Rights Reserved.</p>
+      </div>
+    </div>
+</div>
+</body>
+</html>

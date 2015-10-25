@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-	@RequestMapping(value="/ylh", method=RequestMethod.GET)
+	@RequestMapping(value="/ylhIndex", method=RequestMethod.GET)
 	public String yinlinghuimain() {
-		return "yinlinghuimain";
+		return "ylhIndex";
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String index() {
+	@RequestMapping(value="/ylh/ylhmain.json", method=RequestMethod.GET)
+	public @ResponseBody String index() {
 		return "yinlinghuimain";
 	}
 	

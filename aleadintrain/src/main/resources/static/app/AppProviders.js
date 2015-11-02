@@ -1,5 +1,5 @@
 angular.module('aleadin', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-      when('/ylhMain', {templateUrl: 'yinlinghuimain.html',   controller: YingLinHuiMainCtrl});
+      when('/ylh/main.do', {templateUrl: 'yinlinghuimain.html',   controller: YingLinHuiCtrl});
 }]);

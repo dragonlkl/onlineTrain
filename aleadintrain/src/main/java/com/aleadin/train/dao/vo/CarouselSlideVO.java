@@ -6,7 +6,9 @@ public class CarouselSlideVO {
 	
 	//SlideID
 	private String slideID;
-
+	
+	//目标对象ID
+	private String objectID;
 	
 	public String getImgPath() {
 		return imgPath;

@@ -10,13 +10,19 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox" align="center">
             <div class="item active">
-              <img class="first-slide" src="../img/slide1.jpg" alt="First slide image"></img>
+              <a href="{{data.YLHMainslides[0].targetPath}}">    
+                <img class="first-slide" ng-src="{{data.YLHMainslides[0].imgPath}}" alt="First slide image"></img>
+              </a>
             </div>
             <div class="item">
-              <img class="second-slide" src="../img/slide2.jpg" alt="Second slide image"></img>
+              <a href="{{data.YLHMainslides[1].targetPath}}">
+                <img class="second-slide" ng-src="{{data.YLHMainslides[1].imgPath}}" alt="Second slide image"></img>
+              </a>
             </div>
             <div class="item">
-              <img class="third-slide" src="../img/slide3.jpg" alt="Third slide image"></img>
+              <a href="{{data.YLHMainslides[2].targetPath}}">
+                <img class="third-slide" ng-src="{{data.YLHMainslides[2].imgPath}}" alt="Third slide image"></img>
+              </a>
             </div>
           </div>
 
@@ -33,16 +39,16 @@
   <div class="bs-callout bs-callout-danger" id="callout-overview-not-both">
     <h4>大咖课程</h4>
   </div>
-  <div class="media">
+  <div class="media" ng-repeat="ssc in data.superStarCourse">
         <div class="media-left media-middle">
-          <a href="#">
-            <img class="media-object img-thumbnail" src="../img/img_1.jpg" alt="Generic placeholder image"></img>
+          <a href="{{ssc.link}}">
+            <img class="media-object img-thumbnail" ng-src="{{ssc.imagePath}}" alt="Generic placeholder image"></img>
           </a>
         </div>
         <div class="media-body  media-middle">
-          <h3 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  郭小霞    艾英领    产品总监</h3>
-          <h4 class = "strong">艾英领产品总监 : 想面试成功不难，有点墨水，再加上最甜一些，搞定</h4>
-          <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,欲知详情，请掏钱听课</p>
+          <h3 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  {{ssc.authorName}}    {{ssc.company}}    {{ssc.position}}</h3>
+          <h4 class = "strong">{{ssc.title}}</h4>
+          <p>{{ssc.introduce}}</p>
         </div>
   </div>
 
@@ -50,16 +56,16 @@
     <h4>菁英课程</h4>
   </div>
 
-  <div class="media">
+  <div class="media" ng-repeat="ec in data.eliteCourse">
         <div class="media-left media-middle">
-          <a href="#">
-            <img class="media-object img-thumbnail" src="../img/img_1.jpg" alt="Generic placeholder image"></img>
+          <a href="{{ec.link}}">
+            <img class="media-object img-thumbnail" ng-src="{{ec.imagePath}}" alt="Generic placeholder image"></img>
           </a>
         </div>
         <div class="media-body  media-middle">
-          <h3 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  郭小霞    艾英领    产品总监</h3>
-          <h4 class = "strong">艾英领产品总监 : 想面试成功不难，有点墨水，再加上最甜一些，搞定</h4>
-          <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,欲知详情，请掏钱听课</p>
+          <h3 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  {{ec.authorName}}    {{ec.company}}    {{ec.position}}</h3>
+          <h4 class = "strong">{{ec.title}}</h4>
+          <p>{{ec.introduce}}</p>
         </div>
   </div>
 </div>

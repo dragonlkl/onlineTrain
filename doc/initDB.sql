@@ -1,3 +1,26 @@
+
+CREATE TABLE `tbl_account` (
+  `ID` varchar(32) NOT NULL COMMENT '用户ID',
+  `petName` varchar(64) NOT NULL COMMENT '昵称',
+  `realName` varchar(64) DEFAULT NULL COMMENT '真实姓名',
+  `sex` varchar(2) DEFAULT NULL COMMENT '性别',
+  `age` int(5) DEFAULT NULL COMMENT '年龄层',
+  `industry` varchar(64) DEFAULT NULL COMMENT '行业',
+  `company` varchar(128) DEFAULT NULL COMMENT '任职机构',
+  `position` varchar(64) DEFAULT NULL COMMENT '职位',
+  `telephoneNumber` varchar(13) NOT NULL COMMENT '手机号',
+  `password` varchar(128) DEFAULT NULL COMMENT '密码',
+  `imgPath` varchar(256) DEFAULT NULL COMMENT '头像路径',
+  `tag1` varchar(1024) DEFAULT NULL COMMENT '标签1',
+  `tag2` varchar(1024) DEFAULT NULL COMMENT '标签2',
+  `tag3` varchar(1024) DEFAULT NULL COMMENT '标签2',
+  `type` varchar(8) DEFAULT NULL COMMENT '用户类型',
+  `createTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updateTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `deleteTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`,`telephoneNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
 CREATE TABLE `TBL_CLASS` (
   `ID` varchar(32) NOT NULL COMMENT '课程ID',
   `title` varchar(256) NOT NULL COMMENT '课程标题',

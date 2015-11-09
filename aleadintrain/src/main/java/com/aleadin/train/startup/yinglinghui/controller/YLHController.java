@@ -3,7 +3,6 @@ package com.aleadin.train.startup.yinglinghui.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aleadin.train.service.YLHService;
@@ -14,21 +13,27 @@ public class YLHController {
 	@Autowired
 	YLHService service;
 	
-	@RequestMapping(value="/ylh/main.do", method=RequestMethod.GET)
+	@RequestMapping(value="/ylh/main.do")
 	public String yinlinghuimain() {
 		return "ylhIndex";
 	}
 	
-	@RequestMapping(value="/ylh/main.json", method=RequestMethod.GET)
+	@RequestMapping(value="/ylh/main.json")
 	public @ResponseBody String index() {
-		
-		return "yinlinghuimain";
+		String mainjson = service.createYLHMainData();
+		return mainjson;
 	}
 	
 	@RequestMapping(value="/test")
 	public @ResponseBody String test()
 	{
 		return "test success";
+	}
+	
+	@RequestMapping(value="/demo")
+	public String demo()
+	{
+		return "demo";
 	}
 	
 	//

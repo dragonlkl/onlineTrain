@@ -4,7 +4,7 @@ public class YLHMainViewData {
 	
 	private String title;
 	
-	private java.util.List<CarouselSlideViewData> YLHMainslides;
+	private java.util.List<CarouselSlideViewData> yLHMainslides;
 	
 	private java.util.List<CourseViewData> superStarCourse;
 	
@@ -19,11 +19,11 @@ public class YLHMainViewData {
 	}
 
 	public java.util.List<CarouselSlideViewData> getYLHMainslides() {
-		return YLHMainslides;
+		return yLHMainslides;
 	}
 
 	public void setYLHMainslides(java.util.List<CarouselSlideViewData> yLHMainslides) {
-		YLHMainslides = yLHMainslides;
+		this.yLHMainslides = yLHMainslides;
 	}
 
 	public java.util.List<CourseViewData> getSuperStarCourse() {

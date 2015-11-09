@@ -3,15 +3,16 @@ package com.aleadin.train.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
 import com.aleadin.train.model.YLHMainViewData;
 import com.alibaba.fastjson.JSON;
 
-@Service
+@Component
 public class YLHService {
+	
   public String createYLHMainData()
   {
 	  YLHMainViewData ylhMainData = new YLHMainViewData();
@@ -90,7 +91,7 @@ public class YLHService {
 	  elitecviewData2.setIntroduce("不同的公司有不同的文化，不同的CTO有不同的性格，在面试时如鹅观察老板的举动，了解什么样的CTO喜欢什么样的员工");
 	  eliteCourse.add(elitecviewData2);
 	  
-	  ylhMainData.setSuperStarCourse(eliteCourse);
+	  ylhMainData.setEliteCourse(eliteCourse);
 	  
   }
 }

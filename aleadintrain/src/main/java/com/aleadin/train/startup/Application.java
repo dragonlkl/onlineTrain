@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-@ComponentScan
+@ComponentScan(basePackages = "com.aleadin.train")
 @EnableAutoConfiguration
 public class Application  extends WebMvcConfigurerAdapter implements ApplicationContextAware{
 	public static ApplicationContext context;

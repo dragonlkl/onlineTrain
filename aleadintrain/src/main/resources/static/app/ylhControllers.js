@@ -1,9 +1,8 @@
-function YingLinHuiCtrl($scope,$http,$routeParams)
+var YingLinHuiCtrl = function ($scope,$http)
 {
-	$http.get('/ylh/ylhmain.json').success(function(data) {
-    $scope.maindata= data;
+	$http.get('/ylh/main.json').success(function(data) {
+    $scope.data= data;
   });
 }
-
-YingLinHuiMainCtrl.$inject = ['$scope', '$http','$routeParams'];
+app.controller("YingLinHuiCtrl",YingLinHuiCtrl);
 

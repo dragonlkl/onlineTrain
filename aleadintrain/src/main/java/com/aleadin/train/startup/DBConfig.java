@@ -35,53 +35,53 @@ public class DBConfig  implements ApplicationContextAware{
 	private Log log = LogFactory.getLog(DBConfig.class);
 	private ApplicationContext ctx;
 
-	@Bean(name = "sdkserver_datasource")
+	@Bean(name = "mysql_datasource")
 	@Primary
-	DataSource sdkserver_datasource(DBConf dbConf) {
+	DataSource mysql_datasource(DBConf dbConf) {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@" + dbConf.getIp() + ":" + dbConf.getPort() + ":" + dbConf.getSid();
-		dataSource.setUrl(url);
+		dataSource.setDriverClassName(dbConf.getDriverClassName());
+		
+		dataSource.setUrl(dbConf.getUrl());
 		dataSource.setUsername(dbConf.getUser());
 		dataSource.setPassword(dbConf.getPassword());
 		dataSource.setMinIdle(dbConf.getMinIdle());
 		dataSource.setMinIdle(dbConf.getMaxIdle());
 		dataSource.setMaxActive(dbConf.getMaxActive());
-		log.info("sdkserver center database url is " + url + ", user is  " + dbConf.getUser());
+		log.info("init mysql_datasource success");
 		return dataSource;
 	}
 
-	@Bean(name = "sdkserver_sqlsession")
-	@DependsOn("sdkserver_datasource")
+	@Bean(name = "mysql_sqlsession")
+	@DependsOn("mysql_datasource")
 	SqlSessionFactoryBean sqlSessionFactory() throws IOException {
 		SqlSessionFactoryBean sqlSession = new SqlSessionFactoryBean();
-		sqlSession.setDataSource(ctx.getBean("sdkserver_datasource", DataSource.class));
-		sqlSession.setTypeAliasesPackage("com.seasun.powerking.sdkportal.dao.vo");
-		sqlSession.setConfigLocation(new ClassPathResource("com/seasun/powerking/sdkportal/dao/mapper/mybatis_config.xml"));
+		sqlSession.setDataSource(ctx.getBean("mysql_datasource", DataSource.class));
+		sqlSession.setTypeAliasesPackage("com.aleadin.train.dao.vo");
+		sqlSession.setConfigLocation(new ClassPathResource("com/aleadin/train/dao/mapper/mybatis_config.xml"));
 		Resource[] resources = new PathMatchingResourcePatternResolver()
-				.getResources("classpath:com/seasun/powerking/sdkportal/dao/mapper/*mapper.xml");
+				.getResources("classpath:com/aleadin/train/dao/mapper/*mapper.xml");
 		sqlSession.setMapperLocations(resources);
 		return sqlSession;
 	}
 
-	@Bean(name = "sdkserver_transactionmanager")
-	@DependsOn("sdkserver_datasource")
+	@Bean(name = "mysql_transactionmanager")
+	@DependsOn("mysql_datasource")
 	PlatformTransactionManager sdkserver_transactionManager() {
-		return new DataSourceTransactionManager(ctx.getBean("sdkserver_datasource", DataSource.class));
+		return new DataSourceTransactionManager(ctx.getBean("mysql_datasource", DataSource.class));
 	}
 
-	@Bean(name = "sdkserver_mapper")
+	@Bean(name = "mysql_mapper")
 	MapperScannerConfigurer mapperScannerConfigure() {
 		MapperScannerConfigurer scanner = new MapperScannerConfigurer();
-		scanner.setBasePackage("com.seasun.powerking.sdkportal.dao.service");
-		scanner.setSqlSessionFactoryBeanName("sdkserver_sqlsession");
+		scanner.setBasePackage("com.aleadin.train.dao.service");
+		scanner.setSqlSessionFactoryBeanName("mysql_sqlsession");
 		return scanner;
 	}
 	
-	@Bean(name = "sdkserver_jdbc")
-	@DependsOn("sdkserver_datasource")
-	public JdbcTemplate sdkserver_jdbcTemplate(DataSource sdkserver_datasource) {
-		return new JdbcTemplate(sdkserver_datasource);
+	@Bean(name = "mysql_jdbc")
+	@DependsOn("mysql_datasource")
+	public JdbcTemplate mysql_jdbcTemplate(DataSource mysql_datasource) {
+		return new JdbcTemplate(mysql_datasource);
 	}
 
 	@ConfigurationProperties(prefix = "db")
@@ -160,17 +160,25 @@ public class DBConfig  implements ApplicationContextAware{
 		public void setMinIdle(int minIdle) {
 			this.minIdle = minIdle;
 		}
+		public String getDriverClassName() {
+			return driverClassName;
+		}
 
+		public void setDriverClassName(String driverClassName) {
+			this.driverClassName = driverClassName;
+		}
+
+		public String getUrl() {
+			return url;
+		}
+
+		public void setUrl(String url) {
+			this.url = url;
+		}
 	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.ctx = applicationContext;
-	}    
-
-	@Bean(name = "sdkserver_transactionmanager")
-	@DependsOn("sdkserver_datasource")
-	PlatformTransactionManager analytics_transactionManager() {
-		return new DataSourceTransactionManager(ctx.getBean("sdkserver_datasource", DataSource.class));
 	}
 }

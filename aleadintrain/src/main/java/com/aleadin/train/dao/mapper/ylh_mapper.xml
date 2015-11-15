@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seasun.powerking.sdkportal.analytics.dao.service.KsyunGameDao">
+	<insert id="importDownload" parameterType="KsyunDownloadVo">
+	insert into R_NEWADD_DOWNLOAD_KSYUN( statday, appid, channelid,
+	serverid, ostype, clickcnt, cnt) 
+	values(#{lStatDay}, #{appId}, &apos;*&apos;,&apos;*&apos;, &apos;*&apos;,#{totalClickCount}, #{totalDownloadCount})
+	</insert>
+	
+	<insert id="importNewAddDevice" parameterType="KsyunDownloadVo">
+	insert into R_NEWADD_DEVICE_KSYUN( statday, appid, channelid,
+	serverid, ostype, cnt) 
+	values(#{lStatDay}, #{appId}, &apos;*&apos;,&apos;*&apos;, &apos;*&apos;,#{newActivateCount})
+	</insert>
+	
+	<insert id="importNewAddAccount" parameterType="KsyunDownloadVo">
+	insert into R_NEWADD_ACCOUNT_KSYUN( statday, appid, channelid,
+	serverid, ostype, cnt) 
+	values(#{lStatDay}, #{appId}, &apos;*&apos;, &apos;*&apos;, &apos;*&apos;, #{newAccountCount})
+	</insert>
+	
+	<delete id="deleteDownload">
+	    delete from R_NEWADD_DOWNLOAD_KSYUN where appid=#{0} and statday=#{1}
+	</delete>
+	<delete id="deleteNewAddDevice">
+	    delete from R_NEWADD_DEVICE_KSYUN where appid=#{0} and statday=#{1}
+	</delete>
+	<delete id="deleteNewAddAccount">
+	    delete from R_NEWADD_ACCOUNT_KSYUN where appid=#{0} and statday=#{1}
+	</delete>
+</mapper>

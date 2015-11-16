@@ -1,1 +1,1 @@
-var app = angular.module('aleadin', ['ngRoute']);
+var app = angular.module('aleadin', []);

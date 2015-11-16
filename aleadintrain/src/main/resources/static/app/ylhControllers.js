@@ -5,4 +5,3 @@ var YingLinHuiCtrl = function ($scope,$http)
   });
 }
 app.controller("YingLinHuiCtrl",YingLinHuiCtrl);
-

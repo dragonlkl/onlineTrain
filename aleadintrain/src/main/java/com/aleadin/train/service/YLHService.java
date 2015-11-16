@@ -1,10 +1,16 @@
 package com.aleadin.train.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.aleadin.train.dao.Const.DBConst;
+import com.aleadin.train.dao.service.YlhDao;
+import com.aleadin.train.dao.vo.SlideVO;
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
 import com.aleadin.train.model.YLHMainViewData;
@@ -12,6 +18,9 @@ import com.alibaba.fastjson.JSON;
 
 @Component
 public class YLHService {
+	
+	@Autowired
+	private YlhDao ylhDao;
 	
   public String createYLHMainData()
   {
@@ -24,6 +33,9 @@ public class YLHService {
   
   private void initDemoData(YLHMainViewData ylhMainData)
   {
+	 Map<String, Object> params = new HashMap<String, Object>();
+	 params.put("position", DBConst.TBL_SLIDE_POSITION_YLHMAINSLIDE);
+	 List<SlideVO> yhlMainslides = ylhDao.querySlideByPosition(params);
 	//滚动广告
 	  ArrayList<CarouselSlideViewData> cslide = new ArrayList<CarouselSlideViewData>();
 	  CarouselSlideViewData slide1 = new CarouselSlideViewData();

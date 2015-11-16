@@ -14,7 +14,7 @@ public class Application  extends WebMvcConfigurerAdapter implements Application
 	public static ApplicationContext context;
 	
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(new Object[] {Application.class,DBConfig.class}, args);
     }
 
 	@Override

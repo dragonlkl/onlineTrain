@@ -13,13 +13,18 @@ public class YLHController {
 	@Autowired
 	YLHService service;
 	
+	@RequestMapping(value="/")
+	public String index() {
+		return "index";
+	}
+	
 	@RequestMapping(value="/ylh/main.do")
 	public String yinlinghuimain() {
 		return "ylhIndex";
 	}
 	
 	@RequestMapping(value="/ylh/main.json")
-	public @ResponseBody String index() {
+	public @ResponseBody String ylhMainData() {
 		String mainjson = service.createYLHMainData();
 		return mainjson;
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.aleadin.train.dao.Const.DBConst;
 import com.aleadin.train.dao.service.YlhDao;
+import com.aleadin.train.dao.vo.ClassSurveyVO;
 import com.aleadin.train.dao.vo.SlideVO;
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
@@ -38,23 +39,16 @@ public class YLHService {
 	 List<SlideVO> yhlMainslides = ylhDao.querySlideByPosition(params);
 	//滚动广告
 	  ArrayList<CarouselSlideViewData> cslide = new ArrayList<CarouselSlideViewData>();
-	  CarouselSlideViewData slide1 = new CarouselSlideViewData();
-	  slide1.setImgPath("/img/slide1.jpg");
-	  slide1.setSlideID("YLHMainSlide1");
-	  slide1.setTargetPath("/ylh/objectid1");
-	  cslide.add(slide1);
-	  
-	  CarouselSlideViewData slide2 = new CarouselSlideViewData();
-	  slide2.setImgPath("/img/slide2.jpg");
-	  slide2.setSlideID("YLHMainSlide2");
-	  slide2.setTargetPath("/ylh/objectid2");
-	  cslide.add(slide2);
-	  
-	  CarouselSlideViewData slide3 = new CarouselSlideViewData();
-	  slide3.setImgPath("/img/slide3.jpg");
-	  slide3.setSlideID("YLHMainSlide3");
-	  slide3.setTargetPath("/ylh/objectid3");
-	  cslide.add(slide3);
+	  for (int i = 0; i < yhlMainslides.size(); i++)
+	  {
+		  SlideVO slide = yhlMainslides.get(i);
+		  CarouselSlideViewData slide1 = new CarouselSlideViewData();
+		  slide1.setImgPath(slide.getImgPath());
+		  slide1.setSlideID(slide.getID());
+		  slide1.setTargetPath("/ylh/mainslide/"+slide.getObjectID());
+		  cslide.add(slide1);
+		
+	  }
 	  
 	  ylhMainData.setYLHMainslides(cslide);
 	  //大咖课程列表
@@ -81,28 +75,23 @@ public class YLHService {
 	  
 	  ylhMainData.setSuperStarCourse(superStarcousre);
 	  
+	  params = new HashMap<String, Object>();
+	  List<ClassSurveyVO> surveys = ylhDao.queryClassSurvey(params);
 	  //菁英课程
 	  List<CourseViewData> eliteCourse = new ArrayList<CourseViewData>();
-	  CourseViewData  elitecviewData1 = new CourseViewData();
-	  cviewData1.setLink("#");
-	  elitecviewData1.setAuthorName("mars");
-	  elitecviewData1.setCompany("艾英领");
-	  elitecviewData1.setPosition("CMO");
-	  elitecviewData1.setTitle("艾英领 CMO : 告诉你面试市场销售人员的关键，面试如何应对面试官的提问");
-	  elitecviewData1.setImagePath("/img/img_1.jpg");
-	  elitecviewData1.setIntroduce("不同的公司有不同的文化，不同的CMO有不同的性格，在面试时如鹅观察老板的举动，了解什么样的CMO喜欢什么样的员工");
-	  eliteCourse.add(elitecviewData1);
-	  
-	  CourseViewData  elitecviewData2 = new CourseViewData();
-	  cviewData1.setLink("#");
-	  elitecviewData2.setAuthorName("dennis");
-	  elitecviewData2.setCompany("艾英领");
-	  elitecviewData2.setPosition("CTO");
-	  elitecviewData2.setTitle("艾英领 CTO : 告诉如何准备专业的面试，如何应对专业面试问题");
-	  elitecviewData2.setImagePath("/img/img_1.jpg");
-	  elitecviewData2.setIntroduce("不同的公司有不同的文化，不同的CTO有不同的性格，在面试时如鹅观察老板的举动，了解什么样的CTO喜欢什么样的员工");
-	  eliteCourse.add(elitecviewData2);
-	  
+	  for (int i = 0; i < surveys.size(); i++) 
+	  {
+		  ClassSurveyVO csvo = surveys.get(i);  
+		  CourseViewData  elitecviewData1 = new CourseViewData();
+		  cviewData1.setLink("/ylh/class/"+csvo.getID());
+		  elitecviewData1.setAuthorName(csvo.getRealName());
+		  elitecviewData1.setCompany(csvo.getCompany());
+		  elitecviewData1.setPosition(csvo.getPosition());
+		  elitecviewData1.setTitle(csvo.getTitle());
+		  elitecviewData1.setImagePath(csvo.getImgPath());
+		  elitecviewData1.setIntroduce(csvo.getIntroduce());
+		  eliteCourse.add(elitecviewData1);
+	   }
 	  ylhMainData.setEliteCourse(eliteCourse);
 	  
   }

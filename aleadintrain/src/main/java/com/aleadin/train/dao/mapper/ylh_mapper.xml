@@ -3,11 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.aleadin.train.dao.service.YlhDao">
-	    <select id="querySlideByPosition" resultType="SlideVO">
+   <select id="querySlideByPosition" resultType="SlideVO">
 	select * from TBL_SLIDE where 1 = 1
 	<if test="position != null and position != ''">
 		and position = #{position}
 	</if>
 	 order by slideindex
+     </select>
+     
+   <select id="queryClassSurvey" resultType="ClassSurveyVO">
+	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1 and a.authorID = b.ID
 	</select>
 </mapper>

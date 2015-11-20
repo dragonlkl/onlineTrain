@@ -2,6 +2,7 @@ package com.aleadin.train.startup.yinglinghui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,6 +13,18 @@ public class YLHController {
 	
 	@Autowired
 	YLHService service;
+	
+	@RequestMapping(value="/test")
+	public @ResponseBody String test()
+	{
+		return "test success";
+	}
+	
+	@RequestMapping(value="/demo")
+	public String demo()
+	{
+		return "demo";
+	}
 	
 	@RequestMapping(value="/")
 	public String index() {
@@ -29,19 +42,17 @@ public class YLHController {
 		return mainjson;
 	}
 	
-	@RequestMapping(value="/test")
-	public @ResponseBody String test()
-	{
-		return "test success";
+	@RequestMapping(value="/ylh/eliteclass")
+	public String ylhEliteClass() {
+		return "eliteclass";
 	}
 	
-	@RequestMapping(value="/demo")
-	public String demo()
-	{
-		return "demo";
+	@RequestMapping(value="/ylh/eliteclass.json/{classid}")
+	public  @ResponseBody String ylhEliteClassData(@PathVariable String classid) {
+		return "eliteclass";
 	}
 	
-	//
+	
 	@RequestMapping(value="/ylh/superstarcourse")
 	public String superStarCourse()
 	{

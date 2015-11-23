@@ -1,1 +1,1 @@
-var app = angular.module('aleadin', []);
+//var app = angular.module('aleadin', ['ngRoute', 'ngAnimate']);

@@ -42,6 +42,11 @@ public class YLHController {
 		return mainjson;
 	}
 	
+	@RequestMapping(value="/ylh/yinlinghuimain.html")
+	public String yinlinghuimainHtml() {
+		return "yinlinghuimain";
+	}
+	
 	@RequestMapping(value="/ylh/eliteclass")
 	public String ylhEliteClass() {
 		return "eliteclass";

@@ -83,7 +83,7 @@ public class YLHService {
 	  {
 		  ClassSurveyVO csvo = surveys.get(i);  
 		  CourseViewData  elitecviewData1 = new CourseViewData();
-		  cviewData1.setLink("/ylh/class/"+csvo.getID());
+		  elitecviewData1.setLink("/ylh/class/"+csvo.getID());
 		  elitecviewData1.setAuthorName(csvo.getRealName());
 		  elitecviewData1.setCompany(csvo.getCompany());
 		  elitecviewData1.setPosition(csvo.getPosition());

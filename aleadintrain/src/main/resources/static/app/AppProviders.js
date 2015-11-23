@@ -9,7 +9,7 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
           controller: 'YingLinHuiMainCtrl',
           controllerAs: 'ylhmain'
         });
-      alert("config");
+      
       $locationProvider.html5Mode(true);
   }])
   .controller('YingLinHuiMainCtrl', ['$scope','$http','$route','$routeParams','$location',
@@ -17,10 +17,8 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
-      alert("wwwwwwww");
       $http.get('/ylh/main.json').success(function(data) {
     	    $scope.data= data;
     	  });
   }]);
 })(window.angular);
-alert("init end");

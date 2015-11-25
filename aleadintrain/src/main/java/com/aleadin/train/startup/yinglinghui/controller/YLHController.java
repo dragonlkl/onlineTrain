@@ -38,7 +38,7 @@ public class YLHController {
 	
 	@RequestMapping(value="/ylh/main.json")
 	public @ResponseBody String ylhMainData() {
-		String mainjson = service.createYLHMainData();
+		String mainjson = service.queryYLHMainData();
 		return mainjson;
 	}
 	
@@ -47,14 +47,14 @@ public class YLHController {
 		return "yinlinghuimain";
 	}
 	
-	@RequestMapping(value="/ylh/eliteclass")
+	@RequestMapping(value="/ylh/eliteclass.html")
 	public String ylhEliteClass() {
 		return "eliteclass";
 	}
 	
 	@RequestMapping(value="/ylh/eliteclass.json/{classid}")
 	public  @ResponseBody String ylhEliteClassData(@PathVariable String classid) {
-		return "eliteclass";
+		return "";
 	}
 	
 	

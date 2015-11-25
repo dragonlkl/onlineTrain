@@ -1,5 +1,5 @@
 package com.aleadin.train.dao.vo;
-
+//课程概要
 public class ClassSurveyVO 
 {
    private String ID;

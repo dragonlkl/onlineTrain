@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 
 import com.aleadin.train.dao.Const.DBConst;
 import com.aleadin.train.dao.service.YlhDao;
+import com.aleadin.train.dao.vo.ClassDetailVo;
 import com.aleadin.train.dao.vo.ClassSurveyVO;
 import com.aleadin.train.dao.vo.SlideVO;
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
+import com.aleadin.train.model.EliteClassViewData;
 import com.aleadin.train.model.YLHMainViewData;
 import com.alibaba.fastjson.JSON;
 
@@ -23,16 +25,16 @@ public class YLHService {
 	@Autowired
 	private YlhDao ylhDao;
 	
-  public String createYLHMainData()
+  public String queryYLHMainData()
   {
 	  YLHMainViewData ylhMainData = new YLHMainViewData();
 	  ylhMainData.setTitle("英领汇");
-	  initDemoData(ylhMainData);
+	  initYLHMainData(ylhMainData);
 	  String mainData = JSON.toJSONString(ylhMainData);
 	  return mainData;
   }
   
-  private void initDemoData(YLHMainViewData ylhMainData)
+  private void initYLHMainData(YLHMainViewData ylhMainData)
   {
 	 Map<String, Object> params = new HashMap<String, Object>();
 	 params.put("position", DBConst.TBL_SLIDE_POSITION_YLHMAINSLIDE);
@@ -83,7 +85,7 @@ public class YLHService {
 	  {
 		  ClassSurveyVO csvo = surveys.get(i);  
 		  CourseViewData  elitecviewData1 = new CourseViewData();
-		  elitecviewData1.setLink("/ylh/class/"+csvo.getID());
+		  elitecviewData1.setLink("/ylh/eliteclass/"+csvo.getID());
 		  elitecviewData1.setAuthorName(csvo.getRealName());
 		  elitecviewData1.setCompany(csvo.getCompany());
 		  elitecviewData1.setPosition(csvo.getPosition());
@@ -94,5 +96,38 @@ public class YLHService {
 	   }
 	  ylhMainData.setEliteCourse(eliteCourse);
 	  
+  }
+  
+  public String queryEliteClassData(String classid)
+  {
+	  EliteClassViewData eliteClass = new EliteClassViewData();
+	  Map<String, Object> params = new HashMap<String, Object>();
+	  params.put("classid", classid);
+	  List<ClassDetailVo> classlist = ylhDao.queryClassDetail(params);
+	  if(classlist != null && classlist.get(0) != null)
+	  {
+		  ClassDetailVo cdVO = classlist.get(0);
+		  eliteClass.setClassid(cdVO.getClassid());
+		  eliteClass.setVediopath(cdVO.getVediopath());
+		  eliteClass.setTitle(cdVO.getTitle());
+		  eliteClass.setIntroduce(cdVO.getIntroduce());
+		  eliteClass.setAuthorID(cdVO.getAuthorID());
+		  eliteClass.setAuthorName(cdVO.getAuthorName());
+		  eliteClass.setCompany(cdVO.getCompany());
+		  eliteClass.setPosition(cdVO.getPosition());
+		  eliteClass.setAuthIntroduce1(cdVO.getAuthIntroduce1());
+		  eliteClass.setAuthIntroduce2(cdVO.getAuthIntroduce2());
+		  eliteClass.setAuthIntroduce3(cdVO.getAuthIntroduce3());
+		  eliteClass.setAuthImgPath(cdVO.getAuthImgPath());
+	  }
+	  Map<String, Object> params1 = new HashMap<String, Object>();
+	  params1.put("classid", classid);
+	  List<ClassSurveyVO> rclasslist = ylhDao.queryRelationClassSurvey(params1);
+	  if(rclasslist != null && rclasslist.size()>0)
+	  {
+		  
+	  }
+	  String Data = JSON.toJSONString(eliteClass);
+	  return Data;
   }
 }

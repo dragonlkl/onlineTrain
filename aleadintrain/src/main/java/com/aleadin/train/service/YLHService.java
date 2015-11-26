@@ -15,7 +15,11 @@ import com.aleadin.train.dao.vo.ClassSurveyVO;
 import com.aleadin.train.dao.vo.SlideVO;
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
+import com.aleadin.train.model.DateBarViewData;
 import com.aleadin.train.model.EliteClassViewData;
+import com.aleadin.train.model.EliteCourseViewData;
+import com.aleadin.train.model.SupperStarCourseViewData;
+import com.aleadin.train.model.TopicArticleViewData;
 import com.aleadin.train.model.YLHMainViewData;
 import com.alibaba.fastjson.JSON;
 
@@ -25,10 +29,11 @@ public class YLHService {
 	@Autowired
 	private YlhDao ylhDao;
 	
+	//英领汇主页
   public String queryYLHMainData()
   {
 	  YLHMainViewData ylhMainData = new YLHMainViewData();
-	  ylhMainData.setTitle("英领汇");
+	  ylhMainData.setPageTitle("英领汇");
 	  initYLHMainData(ylhMainData);
 	  String mainData = JSON.toJSONString(ylhMainData);
 	  return mainData;
@@ -52,7 +57,7 @@ public class YLHService {
 		
 	  }
 	  
-	  ylhMainData.setYLHMainslides(cslide);
+	  ylhMainData.setyLHMainslides(cslide);
 	  //大咖课程列表
 	  List<CourseViewData> superStarcousre = new ArrayList<CourseViewData>();
 	  CourseViewData  cviewData1 = new CourseViewData();
@@ -98,9 +103,11 @@ public class YLHService {
 	  
   }
   
+  //菁英课程页
   public String queryEliteClassData(String classid)
   {
 	  EliteClassViewData eliteClass = new EliteClassViewData();
+	  eliteClass.setPageTitle("菁英课堂");
 	  Map<String, Object> params = new HashMap<String, Object>();
 	  params.put("classid", classid);
 	  List<ClassDetailVo> classlist = ylhDao.queryClassDetail(params);
@@ -156,6 +163,77 @@ public class YLHService {
 	  }
 	  eliteClass.setRelationCourse(relationClasses);
 	  String Data = JSON.toJSONString(eliteClass);
+	  return Data;
+  }
+  
+  //菁英课程呢个列表页
+  public String queryEliteCourseData()
+  {
+	  EliteCourseViewData ecvvd = new EliteCourseViewData(); 
+	  ecvvd.setPageTitle("菁英课程");
+	  Map<String, Object> params = new HashMap<String, Object>();
+		 params.put("position", DBConst.TBL_SLIDE_POSITION_ELITECOURSESLIDE);
+		 List<SlideVO> yhlMainslides = ylhDao.querySlideByPosition(params);
+		//滚动广告
+		  ArrayList<CarouselSlideViewData> cslide = new ArrayList<CarouselSlideViewData>();
+		  for (int i = 0; i < yhlMainslides.size(); i++)
+		  {
+			  SlideVO slide = yhlMainslides.get(i);
+			  CarouselSlideViewData slide1 = new CarouselSlideViewData();
+			  slide1.setImgPath(slide.getImgPath());
+			  slide1.setSlideID(slide.getID());
+			  slide1.setTargetPath("/ylh/mainslide/"+slide.getObjectID());
+			  cslide.add(slide1);
+			
+		  }
+		  ecvvd.setEliteCourseslides(cslide);
+		  
+		  params = new HashMap<String, Object>();
+		  List<ClassSurveyVO> surveys = ylhDao.queryClassSurvey(params);
+		  //菁英课程
+		  List<CourseViewData> eliteCourse = new ArrayList<CourseViewData>();
+		  for (int i = 0; i < surveys.size(); i++) 
+		  {
+			  ClassSurveyVO csvo = surveys.get(i);  
+			  CourseViewData  elitecviewData1 = new CourseViewData();
+			  elitecviewData1.setLink("/ylh/eliteclass/"+csvo.getID());
+			  elitecviewData1.setAuthorName(csvo.getRealName());
+			  elitecviewData1.setCompany(csvo.getCompany());
+			  elitecviewData1.setPosition(csvo.getPosition());
+			  elitecviewData1.setTitle(csvo.getTitle());
+			  elitecviewData1.setImagePath(csvo.getImgPath());
+			  elitecviewData1.setIntroduce(csvo.getIntroduce());
+			  eliteCourse.add(elitecviewData1);
+		   }
+		  ecvvd.setEliteCourse(eliteCourse);
+		  String Data = JSON.toJSONString(ecvvd);
+		  return Data;
+  }
+  
+  //大咖课程
+  public String querySupperStarCourseData()
+  {
+	  SupperStarCourseViewData sscvd = new SupperStarCourseViewData();
+	  sscvd.setPageTitle("大咖课程");
+	  String Data = JSON.toJSONString(sscvd);
+	  return Data;
+  }
+  
+//人气文章
+  public String queryTopicArticleData()
+  {
+	  TopicArticleViewData sscvd = new TopicArticleViewData();
+	  sscvd.setPageTitle("人气文章");
+	  String Data = JSON.toJSONString(sscvd);
+	  return Data;
+  }
+  
+//约汇吧
+  public String queryDateBarData()
+  {
+	  DateBarViewData sscvd = new DateBarViewData();
+	  sscvd.setPageTitle("约汇吧");
+	  String Data = JSON.toJSONString(sscvd);
 	  return Data;
   }
 }

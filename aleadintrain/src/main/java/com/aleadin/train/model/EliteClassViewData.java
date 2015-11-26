@@ -3,6 +3,9 @@ package com.aleadin.train.model;
 import java.util.List;
 
 public class EliteClassViewData {
+	
+	private String pageTitle;
+	
 	// 课程ID
 	private String classid;
 
@@ -35,6 +38,15 @@ public class EliteClassViewData {
 
 	// 相关课程
 	private java.util.List<CourseViewData> relationCourse;
+
+	
+	public String getPageTitle() {
+		return pageTitle;
+	}
+
+	public void setPageTitle(String pageTitle) {
+		this.pageTitle = pageTitle;
+	}
 
 	public String getClassid() {
 		return classid;

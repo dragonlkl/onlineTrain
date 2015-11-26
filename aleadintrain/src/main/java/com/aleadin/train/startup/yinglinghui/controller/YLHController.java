@@ -59,30 +59,54 @@ public class YLHController {
 	}
 	
 	
-	@RequestMapping(value="/ylh/superstarcourse")
+	@RequestMapping(value="/ylh/superstarcourse.html")
 	public String superStarCourse()
 	{
 		return "superstarcourse";
 	}
 	
-	@RequestMapping(value="/ylh/elitecourse")
+	@RequestMapping(value="/ylh/superstarcourse.json")
+	public  @ResponseBody String superStarCourseData() {
+		String JsonData = service.querySupperStarCourseData();
+		return JsonData;
+	}
+	
+	@RequestMapping(value="/ylh/elitecourse.html")
 	public String eliteCourse()
 	{
 		return "elitecourse";
 	}
 	
-	//
-	@RequestMapping(value="/ylh/topicarticle")
+	@RequestMapping(value="/ylh/elitecourse.json")
+	public  @ResponseBody String eliteCourseData() {
+		String eliteCourseJson = service.queryEliteCourseData();
+		return eliteCourseJson;
+	}
+	
+	@RequestMapping(value="/ylh/topicarticle.html")
 	public String topicArticle()
 	{
 		return "topicarticle";
 	}
 	
-	@RequestMapping(value="/ylh/datebar")
+	@RequestMapping(value="/ylh/topicarticle.json")
+	public  @ResponseBody String topicArticleData() {
+		String JsonData = service.queryTopicArticleData();
+		return JsonData;
+	}
+	
+	@RequestMapping(value="/ylh/datebar.html")
 	public String dateBar()
 	{
 		return "datebar";
 	}
+	
+	@RequestMapping(value="/ylh/datebar.json")
+	public  @ResponseBody String dateBarData() {
+		String JsonData = service.queryDateBarData();
+		return JsonData;
+	}
+	
 	@RequestMapping(value="/careerpreview/onlinecourse")
 	public String onlineCourse()
 	{

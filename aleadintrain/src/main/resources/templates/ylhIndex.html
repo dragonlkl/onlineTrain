@@ -5,17 +5,8 @@
     <meta th:replace="layout_header" />
     <title ng-bind-template="英领汇"></title>
   </head>
-  <body ng-app="aleadin" >
+  <body  ng-app="aleadin">
      <div ng-controller="YingLinHuiMainCtrl as ylhmain">
-	     <div>
-	      <header class="header bg-primary">
-	        <div class="page-header">
-	          <div class="container">
-	              <h1 align = "center" ng-bind-template="{{data.title}}"></h1>
-	          </div>
-	        </div>
-	      </header>
-	     </div> 
 	      <div class="ng-view"></div>
 	    <div th:replace="layout_footer"></div>
     </div>

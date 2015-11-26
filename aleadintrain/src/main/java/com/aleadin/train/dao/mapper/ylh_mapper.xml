@@ -12,14 +12,14 @@
      </select>
      
    <select id="queryClassSurvey" resultType="ClassSurveyVO">
-	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1 and a.authorID = b.ID
+	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1 and a.authorID = b.ID and a.type = '1'
 	</select>
 	
 	<select id="queryClassDetail" resultType="ClassDetailVo">
-	select a.ID as classid,a.vediopath as vediopath,a.title as title ,a.introduce as introduce,a.authorID as authorID,b.realName as authorName,b.company as company,b.position as position, b.tag1 as authIntroduce1, b.tag2 as authIntroduce2,b.tag3 as authIntroduce3, b.imgPath as authImgPath from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1 and a.ID = #{classid} and a.authorID = b.ID LIMIT 1
+	select a.ID as classid,a.vediopath as vediopath,a.title as title ,a.introduce as introduce,a.authorID as authorID,b.realName as authorName,b.company as company,b.position as position, b.tag1 as authIntroduce1, b.tag2 as authIntroduce2,b.tag3 as authIntroduce3, b.imgPath as authImgPath from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1  and a.type = '1' and a.ID = #{classid} and a.authorID = b.ID LIMIT 1
 	</select>
 	
 	<select id="queryRelationClassSurvey" resultType="ClassSurveyVO">
-	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1 and a.authorID = b.ID and a.ID &lt;&gt; #{classid} LIMIT 2
+	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1  and a.type = '1' and a.authorID = b.ID and a.ID &lt;&gt; #{classid} LIMIT 2
 	</select>
 </mapper>

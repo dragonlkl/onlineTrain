@@ -38,6 +38,16 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
             templateUrl: 'ylh/datebar.html',
             controller: 'dateBarCtrl',
             controllerAs: 'datebar'
+          })
+          .when('/careerpreview/onlinecourse', {
+            templateUrl: 'careerpreview/careerpreviewonlinecourse.html',
+            controller: 'OnlineCourseCtrl',
+            controllerAs: 'onlinecourse'
+          })
+          .when('/careerpreview/offlinecourse', {
+            templateUrl: 'careerpreview/careerpreviewofflinecourse.html',
+            controller: 'OfflineCourseCtrl',
+            controllerAs: 'offlinecourse'
           });
       
       $locationProvider.html5Mode(true);
@@ -94,6 +104,24 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
       this.$location = $location;
       this.$routeParams = $routeParams;
       $http.get('/ylh/datebar.json').success(function(data) {
+    	    $scope.data= data;
+    	  });
+  }])
+  .controller('OnlineCourseCtrl', ['$scope','$http','$route','$routeParams','$location',
+    function($scope,$http,$route, $routeParams, $location) {
+      this.$route = $route;
+      this.$location = $location;
+      this.$routeParams = $routeParams;
+      $http.get('/careerpreview/onlinecourse.json').success(function(data) {
+    	    $scope.data= data;
+    	  });
+  }])
+  .controller('OnlineCourseCtrl', ['$scope','$http','$route','$routeParams','$location',
+    function($scope,$http,$route, $routeParams, $location) {
+      this.$route = $route;
+      this.$location = $location;
+      this.$routeParams = $routeParams;
+      $http.get('/careerpreview/offlinecourse.json').success(function(data) {
     	    $scope.data= data;
     	  });
   }]);

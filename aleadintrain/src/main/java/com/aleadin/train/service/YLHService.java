@@ -18,6 +18,8 @@ import com.aleadin.train.model.CourseViewData;
 import com.aleadin.train.model.DateBarViewData;
 import com.aleadin.train.model.EliteClassViewData;
 import com.aleadin.train.model.EliteCourseViewData;
+import com.aleadin.train.model.OfflineCourseViewData;
+import com.aleadin.train.model.OnlineCourseViewData;
 import com.aleadin.train.model.SupperStarCourseViewData;
 import com.aleadin.train.model.TopicArticleViewData;
 import com.aleadin.train.model.YLHMainViewData;
@@ -234,6 +236,22 @@ public class YLHService {
 	  DateBarViewData sscvd = new DateBarViewData();
 	  sscvd.setPageTitle("约汇吧");
 	  String Data = JSON.toJSONString(sscvd);
+	  return Data;
+  }
+  
+  public String queryOnlineCourseData()
+  {
+	  OnlineCourseViewData ocdata = new OnlineCourseViewData();
+	  ocdata.setPageTitle("线上课程");
+	  String Data = JSON.toJSONString(ocdata);
+	  return Data;
+  }
+  
+  public String queryOfflineCourseData()
+  {
+	  OfflineCourseViewData ocdata = new OfflineCourseViewData();
+	  ocdata.setPageTitle("线上课程");
+	  String Data = JSON.toJSONString(ocdata);
 	  return Data;
   }
 }

@@ -107,16 +107,28 @@ public class YLHController {
 		return JsonData;
 	}
 	
-	@RequestMapping(value="/careerpreview/onlinecourse")
+	@RequestMapping(value="/careerpreview/careerpreviewonlinecourse.html")
 	public String onlineCourse()
 	{
 		return "careerpreviewonlinecourse";
 	}
 	
-	@RequestMapping(value="/careerpreview/offlinecourse")
+	@RequestMapping(value="/careerpreview/onlinecourse.json")
+	public  @ResponseBody String onlineCourseData() {
+		String JsonData = service.queryOnlineCourseData();
+		return JsonData;
+	}
+	
+	@RequestMapping(value="/careerpreview/careerpreviewofflinecourse.html")
 	public String offlineCourse()
 	{
-		return "careerpreviewofflinecourse";
+		return "careerpreviewonlinecourse";
+	}
+	
+	@RequestMapping(value="/careerpreview/offlinecourse.json")
+	public  @ResponseBody String offlineCourseData() {
+		String JsonData = service.queryOfflineCourseData();
+		return JsonData;
 	}
 	
 	@RequestMapping(value="/my/accountmgr")

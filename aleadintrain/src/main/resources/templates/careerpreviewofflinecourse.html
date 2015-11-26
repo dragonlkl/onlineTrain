@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-     <meta th:replace="layout_header" />
-    <title>线下课程</title>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <header class="header bg-primary">
-      <div class="page-header">
-        <div class="container">
-            <h1 align = "center">线下课程</h1>
-        </div>
-      </div>
-    </header>
-    <div class="container-fluid">
+<div>
+	      <header class="header bg-primary">
+	        <div class="page-header">
+	          <div class="container">
+	              <h1 align = "center" ng-bind-template="{{data.pageTitle}}"></h1>
+	          </div>
+	        </div>
+	      </header>
+</div> 
+<div class="container-fluid">
         <div id="aleadin-Carousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -31,13 +19,13 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox" align="center">
               <div class="item active">
-                <img class="first-slide" src="../img/slide1.jpg" alt="First slide image"></img>
+                <img class="first-slide" src="/img/slide1.jpg" alt="First slide image"></img>
               </div>
               <div class="item">
-                <img class="second-slide" src="../img/slide2.jpg" alt="Second slide image"></img>
+                <img class="second-slide" src="/img/slide2.jpg" alt="Second slide image"></img>
               </div>
               <div class="item">
-                <img class="third-slide" src="../img/slide3.jpg" alt="Third slide image"></img>
+                <img class="third-slide" src="/img/slide3.jpg" alt="Third slide image"></img>
               </div>
             </div>
 
@@ -75,7 +63,4 @@
             <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,在课程中你会在在这五个方面得到专业的训练</p>
           </div>
     </div>
-    </div>
-    <div th:replace="layout_footer"></div>
-  </body>
-</html>
+</div>

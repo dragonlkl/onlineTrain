@@ -115,18 +115,46 @@ public class YLHService {
 		  eliteClass.setAuthorName(cdVO.getAuthorName());
 		  eliteClass.setCompany(cdVO.getCompany());
 		  eliteClass.setPosition(cdVO.getPosition());
-		  eliteClass.setAuthIntroduce1(cdVO.getAuthIntroduce1());
-		  eliteClass.setAuthIntroduce2(cdVO.getAuthIntroduce2());
-		  eliteClass.setAuthIntroduce3(cdVO.getAuthIntroduce3());
+		  List<String> authIntroduces =  new ArrayList<String>();
+		  if(cdVO.getAuthIntroduce1() != null && cdVO.getAuthIntroduce1() != "")
+		  {
+			  authIntroduces.add(cdVO.getAuthIntroduce1());
+		  }
+		  if(cdVO.getAuthIntroduce2() != null && cdVO.getAuthIntroduce2() != "")
+		  {
+			  authIntroduces.add(cdVO.getAuthIntroduce2());
+		  }
+		  if(cdVO.getAuthIntroduce3() != null && cdVO.getAuthIntroduce3() != "")
+		  {
+			  authIntroduces.add(cdVO.getAuthIntroduce3());
+		  }
+		  eliteClass.setAuthIntroduces(authIntroduces);
 		  eliteClass.setAuthImgPath(cdVO.getAuthImgPath());
 	  }
 	  Map<String, Object> params1 = new HashMap<String, Object>();
 	  params1.put("classid", classid);
 	  List<ClassSurveyVO> rclasslist = ylhDao.queryRelationClassSurvey(params1);
+	  List<CourseViewData> relationClasses = new ArrayList<CourseViewData>();
 	  if(rclasslist != null && rclasslist.size()>0)
 	  {
-		  
+		  for (int i = 0; i < rclasslist.size(); i++) 
+		  {
+			  ClassSurveyVO  csvo = rclasslist.get(i);
+			  if(csvo != null)
+			  {
+				  CourseViewData  elitecviewData1 = new CourseViewData();
+				  elitecviewData1.setLink("/ylh/eliteclass/"+csvo.getID());
+				  elitecviewData1.setAuthorName(csvo.getRealName());
+				  elitecviewData1.setCompany(csvo.getCompany());
+				  elitecviewData1.setPosition(csvo.getPosition());
+				  elitecviewData1.setTitle(csvo.getTitle());
+				  elitecviewData1.setImagePath(csvo.getImgPath());
+				  elitecviewData1.setIntroduce(csvo.getIntroduce());
+				  relationClasses.add(elitecviewData1);
+			  }
+		  }
 	  }
+	  eliteClass.setRelationCourse(relationClasses);
 	  String Data = JSON.toJSONString(eliteClass);
 	  return Data;
   }

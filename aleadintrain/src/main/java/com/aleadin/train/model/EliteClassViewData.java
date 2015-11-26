@@ -1,5 +1,7 @@
 package com.aleadin.train.model;
 
+import java.util.List;
+
 public class EliteClassViewData {
 	// 课程ID
 	private String classid;
@@ -26,14 +28,8 @@ public class EliteClassViewData {
 	private String position;
 
 	// 作者简介
-	private String authIntroduce1;
-
-	// 作者简介
-	private String authIntroduce2;
-
-	// 作者简介
-	private String authIntroduce3;
-
+	private List<String> authIntroduces;
+	
 	// 作者头像
 	private String authImgPath;
 
@@ -104,28 +100,13 @@ public class EliteClassViewData {
 		this.position = position;
 	}
 
-	public String getAuthIntroduce1() {
-		return authIntroduce1;
+	
+	public List<String> getAuthIntroduces() {
+		return authIntroduces;
 	}
 
-	public void setAuthIntroduce1(String authIntroduce1) {
-		this.authIntroduce1 = authIntroduce1;
-	}
-
-	public String getAuthIntroduce2() {
-		return authIntroduce2;
-	}
-
-	public void setAuthIntroduce2(String authIntroduce2) {
-		this.authIntroduce2 = authIntroduce2;
-	}
-
-	public String getAuthIntroduce3() {
-		return authIntroduce3;
-	}
-
-	public void setAuthIntroduce3(String authIntroduce3) {
-		this.authIntroduce3 = authIntroduce3;
+	public void setAuthIntroduces(List<String> authIntroduces) {
+		this.authIntroduces = authIntroduces;
 	}
 
 	public String getAuthImgPath() {

@@ -32,7 +32,6 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
-      alert($routeParams.classid);
       $http.get('/ylh/eliteclass.json/'+$routeParams.classid).success(function(data) {
     	    $scope.data= data;
     	  });

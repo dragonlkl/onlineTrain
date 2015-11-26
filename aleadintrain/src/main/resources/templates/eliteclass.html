@@ -1,58 +1,55 @@
     <div class="container-fluid">
       <div class="row" align = "center">
-        <video src="../media/02.mp4" controls="controls" width="320" type="video/mp4">
+        <video src="{{data.vediopath}}" controls="controls" width="320" type="video/mp4">
         your browser does not support the video tag
        </video>
      </div>
       <div class="row">
          <h4>课程名</h4>
-         <span> 艾英领 产品总监： 想面试成功不难，有点墨水，再加上最甜一些，搞定</span>
+         <span>{{data.title}}</span>
       </div>
       <div class="row">
          <h4>课程介绍</h4>
-         <span> 不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,弄清楚这五个阶段，你就成为了面试达人，随心所欲进入世界500强</span>
+         <span>{{data.introduce}}</span>
       </div>
       <div class="row">
          <h4>导师介绍</h4>
          <div class="media">
             <div class="media-left media-middle">
               <a href="#">
-                <img class="media-object img-circle" src="../img/touxiang.jpg" alt="Generic placeholder image"></img>
+                <img class="media-object img-circle" ng-src="{{data.authImgPath}}" alt="Generic placeholder image"></img>
               </a>
             </div>
             <div class="media-body  media-middle">
-              <h4 class="media-heading">郭小霞</h4>
+              <h4 class="media-heading">{{data.authorName}}  {{data.company}} {{data.position}}</h4>
             </div>
           </div>
       </div>
       <div class="row">
-        <p>曾就读于卡内基梅隆大学，获计算机学博士学位，后担任副教授。他是一位信息产业的经理人、创业者和电脑科学的研究者。曾在苹果、SGI、微软和Google等多家IT公司担当要职。2009年9月从谷歌离职后创办创新工场，并任董事长兼首席执行官。</p>
+      <ul>
+         <div ng-repeat="authIntroduce in data.authIntroduces">
+      	<li>
+      	{{authIntroduce}}
+      	</li>
+      	</div>
+      </ul>
       </div>
       <div class="bs-callout bs-callout-info" id="callout-overview-not-both">
         <h5>相关链接</h5>
       </div>
-       <div class="media">
-          <div class="media-left media-middle">
-            <a href="#">
-              <img class="media-object img-thumbnail" src="../img/img_1.jpg" alt="Generic placeholder image"></img>
-            </a>
-          </div>
-          <div class="media-body  media-middle">
-            <h4 class = "strong">艾英领产品总监 : 想面试成功不难，有点墨水，再加上最甜一些，搞定</h4>
-            <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,欲知详情，请掏钱听课</p>
-            <h5 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  郭小霞    艾英领    产品总监</h5>
-          </div>
-        </div>
-       <div class="media">
-          <div class="media-left media-middle">
-            <a href="#">
-              <img class="media-object img-thumbnail" src="../img/img_1.jpg" alt="Generic placeholder image"></img>
-            </a>
-          </div>
-          <div class="media-body  media-middle">
-            <h4 class = "strong">艾英领产品总监 : 想面试成功不难，有点墨水，再加上最甜一些，搞定</h4>
-            <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,欲知详情，请掏钱听课</p>
-            <h5 class="media-heading text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  郭小霞    艾英领    产品总监</h5>
-          </div>
+       <div class="media" ng-repeat="ec in data.relationCourse">
+            <div class="media-left media-middle">
+              <a href="{{ec.link}}">
+                <img class="media-object img-thumbnail" ng-src="{{ec.imagePath}}" alt="Generic placeholder image"></img>
+              </a>
+            </div>
+            <div class="media-body  media-middle">
+              <h3 class="media-heading text-primary">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span ng-bind-template="  {{ec.authorName}}    {{ec.company}}    {{ec.position}}"></span>
+              </h3>
+              <h4 class = "strong" ng-bind-template="{{ec.title}}"></h4>
+              <p ng-bind-template="{{ec.introduce}}"></p>
+            </div>
       </div>
 </div>

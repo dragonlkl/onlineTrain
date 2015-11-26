@@ -54,7 +54,8 @@ public class YLHController {
 	
 	@RequestMapping(value="/ylh/eliteclass.json/{classid}")
 	public  @ResponseBody String ylhEliteClassData(@PathVariable String classid) {
-		return "";
+		String eliteClassJson = service.queryEliteClassData(classid);
+		return eliteClassJson;
 	}
 	
 	

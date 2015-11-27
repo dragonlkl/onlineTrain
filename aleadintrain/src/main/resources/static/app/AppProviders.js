@@ -48,6 +48,11 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
             templateUrl: 'careerpreview/careerpreviewofflinecourse.html',
             controller: 'OfflineCourseCtrl',
             controllerAs: 'offlinecourse'
+          })
+          .when('/careerpreview/offlineclass/:offclassid', {
+            templateUrl: 'careerpreview/careerpreviewofflineclass.html',
+            controller: 'OfflineClassCtrl',
+            controllerAs: 'offlineclass'
           });
       
       $locationProvider.html5Mode(true);
@@ -116,12 +121,21 @@ angular.module('aleadin', ['ngRoute', 'ngAnimate'])
     	    $scope.data= data;
     	  });
   }])
-  .controller('OnlineCourseCtrl', ['$scope','$http','$route','$routeParams','$location',
+  .controller('OfflineCourseCtrl', ['$scope','$http','$route','$routeParams','$location',
     function($scope,$http,$route, $routeParams, $location) {
       this.$route = $route;
       this.$location = $location;
       this.$routeParams = $routeParams;
       $http.get('/careerpreview/offlinecourse.json').success(function(data) {
+    	    $scope.data= data;
+    	  });
+  }])
+  .controller('OfflineClassCtrl', ['$scope','$http','$route','$routeParams','$location',
+    function($scope,$http,$route, $routeParams, $location) {
+      this.$route = $route;
+      this.$location = $location;
+      this.$routeParams = $routeParams;
+      $http.get('/careerpreview/offlineclass.json'+$routeParams.offclassid).success(function(data) {
     	    $scope.data= data;
     	  });
   }]);

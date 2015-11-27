@@ -22,4 +22,9 @@
 	<select id="queryRelationClassSurvey" resultType="ClassSurveyVO">
 	select a.ID,a.title,a.introduce,a.imgPath,a.authorID,b.realName,b.company,b.position from TBL_CLASS a, TBL_ACCOUNT b where 1 = 1  and a.type = '1' and a.authorID = b.ID and a.ID &lt;&gt; #{classid} LIMIT 2
 	</select>
+	
+	<select id="queryOfflineClassSurvey" resultType="OfflineClassSurveyVO">
+	select a.ID,a.title,a.introduce,a.startTime,a.thumbnailPath,a.address,a.authorID,b.realName,b.company,b.position from TBL_OFFLINECLASS a, TBL_ACCOUNT b where 1 = 1 and a.authorID = b.ID
+	</select>
+	
 </mapper>

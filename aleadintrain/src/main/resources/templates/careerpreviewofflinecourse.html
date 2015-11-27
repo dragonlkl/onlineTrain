@@ -8,59 +8,61 @@
 	      </header>
 </div> 
 <div class="container-fluid">
-        <div id="aleadin-Carousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#aleadin-Carousel" data-slide-to="0" class="active"></li>
-              <li data-target="#aleadin-Carousel" data-slide-to="1"></li>
-              <li data-target="#aleadin-Carousel" data-slide-to="2"></li>
-            </ol>
+	<div id="aleadin-Carousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#aleadin-Carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#aleadin-Carousel" data-slide-to="1"></li>
+                <li data-target="#aleadin-Carousel" data-slide-to="2"></li>
+              </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" align="center">
-              <div class="item active">
-                <img class="first-slide" src="/img/slide1.jpg" alt="First slide image"></img>
-              </div>
-              <div class="item">
-                <img class="second-slide" src="/img/slide2.jpg" alt="Second slide image"></img>
-              </div>
-              <div class="item">
-                <img class="third-slide" src="/img/slide3.jpg" alt="Third slide image"></img>
-              </div>
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox" align="center">
+                  <div class="item active">
+                    <a href="{{data.slides[0].targetPath}}">
+                    	<img class="first-slide" ng-src="{{data.slides[0].imgPath}}" alt="First slide image"></img>
+                    </a>
+                  </div>
+                  <div class="item">
+                  	<a href="{{data.slides[1].targetPath}}">
+                    	<img class="second-slide" ng-src="{{data.slides[1].imgPath}}" alt="Second slide image"></img>
+                    </a>
+                  </div>
+                  <div class="item">
+                  	<a href="{{data.slides[2].targetPath}}">
+                    	<img class="third-slide" ng-src="{{data.slides[2].imgPath}}" alt="Third slide image"></img>
+                    </a>
+                  </div>
+                </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#aleadin-Carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#aleadin-Carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+    </div>
+    <br></br>
+    <div class="media" ng-repeat="ec in data.classes">
+            <div class="media-left media-middle">
+              <a href="{{ec.link}}">
+                <img class="media-object img-thumbnail" ng-src="{{ec.thumbnailPath}}" alt="Generic placeholder image"></img>
+              </a>
             </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#aleadin-Carousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#aleadin-Carousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-    </div>
-    <div class="media">
-          <div class="media-left media-middle">
-            <a href="#">
-              <img class="media-object img-thumbnail" src="../img/3.jpg" alt="Generic placeholder image"></img>
-            </a>
-          </div>
-          <div class="media-body  media-middle">
-            <h4 class="media-heading text-primary">职场面试葵花宝典（上）</h4>
-            <h5 class = "strong">想面试成功不难，具备专业的技能基础知识，再加上合理的面试技巧，就能大大提高面试成功率</h5>
-            <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,在课程中你会在在这五个方面得到专业的训练</p>
-          </div>
-    </div>
-    <div class="media">
-          <div class="media-left media-middle">
-            <a href="#">
-              <img class="media-object img-thumbnail" src="../img/3.jpg" alt="Generic placeholder image"></img>
-            </a>
-          </div>
-          <div class="media-body  media-middle">
-            <h4 class="media-heading text-primary">职场面试葵花宝典（下）</h4>
-            <h5 class = "strong">想面试成功不难，具备专业的技能基础知识，再加上合理的面试技巧，就能大大提高面试成功率</h5>
-            <p>不同的单位对面试过程的设计会有所不同，有的单位会非常正式，有的单位则相对比较随意，但一般来说，面试可以分为以下五个阶段,在课程中你会在在这五个方面得到专业的训练</p>
-          </div>
-    </div>
+            <div class="media-body  media-middle">
+              <h3 class="media-heading text-primary">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span ng-bind-template="  {{ec.authorName}}    {{ec.company}}    {{ec.position}}"></span>
+              </h3>
+              <h4 class = "strong" ng-bind-template="{{ec.title}}"></h4>
+              <p ng-bind-template="{{ec.introduce}}"></p>
+              <h4 class = "strong" ng-bind-template="讲课地点  {{ec.address}}"></h4>
+              <h4 class = "strong" ng-bind-template="讲课时间  {{ec.startTime}}"></h4>
+            </div>
+      </div>
 </div>
+<br></br>
+<br></br>

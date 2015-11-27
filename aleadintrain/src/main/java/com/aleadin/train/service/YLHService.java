@@ -1,6 +1,9 @@
 package com.aleadin.train.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +15,14 @@ import com.aleadin.train.dao.Const.DBConst;
 import com.aleadin.train.dao.service.YlhDao;
 import com.aleadin.train.dao.vo.ClassDetailVo;
 import com.aleadin.train.dao.vo.ClassSurveyVO;
+import com.aleadin.train.dao.vo.OfflineClassSurveyVO;
 import com.aleadin.train.dao.vo.SlideVO;
 import com.aleadin.train.model.CarouselSlideViewData;
 import com.aleadin.train.model.CourseViewData;
 import com.aleadin.train.model.DateBarViewData;
 import com.aleadin.train.model.EliteClassViewData;
 import com.aleadin.train.model.EliteCourseViewData;
+import com.aleadin.train.model.OfflineClassSurveyViewData;
 import com.aleadin.train.model.OfflineCourseViewData;
 import com.aleadin.train.model.OnlineCourseViewData;
 import com.aleadin.train.model.SupperStarCourseViewData;
@@ -250,8 +255,53 @@ public class YLHService {
   public String queryOfflineCourseData()
   {
 	  OfflineCourseViewData ocdata = new OfflineCourseViewData();
-	  ocdata.setPageTitle("线上课程");
+	  ocdata.setPageTitle("线下课程");
+	  Map<String, Object> params = new HashMap<String, Object>();
+	  params.put("position", DBConst.TBL_SLIDE_POSITION_OFFLINECOURSESLIDE);
+	  List<SlideVO> ocslides = ylhDao.querySlideByPosition(params);
+	 //滚动广告
+	  ArrayList<CarouselSlideViewData> cslide = new ArrayList<CarouselSlideViewData>();
+	  for (int i = 0; i < ocslides.size(); i++)
+	  {
+		  SlideVO slide = ocslides.get(i);
+		  CarouselSlideViewData slide1 = new CarouselSlideViewData();
+		  slide1.setImgPath(slide.getImgPath());
+		  slide1.setSlideID(slide.getID());
+		  slide1.setTargetPath("/careerpreview/offlineclass/"+slide.getObjectID());
+		  cslide.add(slide1);
+		
+	  }
+	  ocdata.setSlides(cslide);
+		  
+	  params = new HashMap<String, Object>();
+	  List<OfflineClassSurveyVO> oclist = ylhDao.queryOfflineClassSurvey(params);
+	  List<OfflineClassSurveyViewData> ocsvdList = new ArrayList<OfflineClassSurveyViewData>();
+	  for (int i = 0; i < oclist.size(); i++) 
+	  {
+		  OfflineClassSurveyVO ocsvo = oclist.get(i);
+		  OfflineClassSurveyViewData ocsvd = new OfflineClassSurveyViewData();
+		  ocsvd.setTitle(ocsvo.getTitle());
+		  ocsvd.setIntroduce(ocsvo.getIntroduce());
+		  Date starttime = ocsvo.getStartTime();
+		  String startTime= "";
+		  if(starttime != null)
+		  {
+			  DateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+			  startTime = format.format(starttime);
+		  }
+		  ocsvd.setStartTime(startTime);
+		  ocsvd.setThumbnailPath(ocsvo.getThumbnailPath());
+		  ocsvd.setAddress(ocsvo.getAddress());
+		  ocsvd.setAuthorID(ocsvo.getAuthorID());
+		  ocsvd.setAuthorName(ocsvo.getRealName());
+		  ocsvd.setCompany(ocsvo.getCompany());
+		  ocsvd.setPosition(ocsvo.getPosition());
+		  ocsvd.setLink("/careerpreview/offlineclass/"+ocsvo.getID());
+		  ocsvdList.add(ocsvd);
+	  }	
+	  ocdata.setClasses(ocsvdList);
 	  String Data = JSON.toJSONString(ocdata);
 	  return Data;
   }
+  
 }

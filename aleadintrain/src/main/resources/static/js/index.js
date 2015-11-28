@@ -58,7 +58,7 @@ $(function(){
                   "classdetail": "为何需要自我认知，如何才能真正的了解自己，了解自己后要如何把握好自己在择业、职场、个人发展上的选择，以及自我认知的工具简介（MBTI的理论基础以及在择业、个人发展方面的应用）"//课程简介
             }
       ];
-      //联系方式 ：电话、邮箱、QQ、微信
+      //联系方式 ：电话、邮箱、微信
       var links = ["+86-20-8380-6630", "lead@aleadin.com", "暂未开通","Aleadin1" ];
       var sidenames = ["secondPage", "3rdPage", "4thpage", "5thpage", "6thpage", "7thpage", "8thpage" ,"9thpage" ,"lastPage"];
       var html = "";

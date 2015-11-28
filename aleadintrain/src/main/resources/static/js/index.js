@@ -59,7 +59,7 @@ $(function(){
             }
       ];
       //联系方式 ：电话、邮箱、QQ、微信
-      var links = ["+86-20-8360-6630", "lead@aleadin.com", "暂未开通","Aleadin1" ];
+      var links = ["+86-20-8380-6630", "lead@aleadin.com", "暂未开通","Aleadin1" ];
       var sidenames = ["secondPage", "3rdPage", "4thpage", "5thpage", "6thpage", "7thpage", "8thpage" ,"9thpage" ,"lastPage"];
       var html = "";
       var index = infos.length % 2;

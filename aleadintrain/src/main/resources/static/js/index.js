@@ -59,7 +59,7 @@ $(function(){
             }
       ];
       //联系方式 ：电话、邮箱、微信
-      var links = ["+86-20-8380-6630", "lead@aleadin.com", "暂未开通","Aleadin1" ];
+      var links = ["+86-20-8380-6630", "lead@aleadin.com", "暂未开通","Aleadin1","广州市艾英领信息科技有限公司 粤ICP备15104204号" ];
       var sidenames = ["secondPage", "3rdPage", "4thpage", "5thpage", "6thpage", "7thpage", "8thpage" ,"9thpage" ,"lastPage"];
       var html = "";
       var index = infos.length % 2;
@@ -143,7 +143,9 @@ $(function(){
                         + '</div><div class="link">'
                         + '<img src="images/weixin.jpg" class="con-icon fl">'
                         + '<p class="title">微信公众号：</p><p class="detail">' + links[3] +'</p>'
-                        + '</div></div></div></div>';
+                        + '</div></div></div><div class="clearfix ta mt30">'
+                        + '<p>'+links[4]+'</p>'
+                        + '</div>';
             }
       }
 
@@ -169,7 +171,9 @@ $(function(){
                   + '</div><div class="link">'
                   + '<img src="images/weixin.jpg" class="con-icon fl">'
                   + '<p class="title">微信公众号：</p><p class="detail">' + links[3] +'</p>'
-                  + '</div></div></div></div>';
+                  + '</div></div></div><div class="clearfix ta mt30">'
+                  + '<p>'+links[4]+'</p>'
+                  + '</div>';
       }
       $("#fullpage").append(html);
       var length = infos.length + 1;
